@@ -10,8 +10,8 @@ export class StorageService {
 
   async store(key: string, value: string) {
     await Storage.set({
-      key:   escape(JSON.stringify(key)),
-      value: value
+      key:   key,
+      value: escape(JSON.stringify(value))
     });
   }
 
