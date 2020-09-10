@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -24,7 +25,8 @@ export class LoginPage implements OnInit {
     private router: Router,
     private authService: AuthService,
     private storageService: StorageService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -42,18 +44,24 @@ export class LoginPage implements OnInit {
 
   login() {
     if (this.formGroup.valid) {
+      this.loadingService.presentLoading('Loading');
+
       this.authService.login(this.data).subscribe((response: any ) => {
         if (response.access_token) {
           this.storageService.store('access_token', response.access_token);
           this.router.navigate(['home']);
         } else {
-          this.toastService.presentToast('Usuario o contraseña incorrectos!');
+          this.toastService.presentToast("Wrong email or password!");
         }
       },
       (error: any) => {
-        this.toastService.presentToast(error.error.message);
+        this.toastService.presentToast("Woops, something went wrong!");
       });
+
+      return;
     }
+
+    this.toastService.presentToast("Correct the inputs with errors");
   }
 
   email() {
