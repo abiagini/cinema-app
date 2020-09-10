@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
@@ -29,11 +31,11 @@ export class LoginPage implements OnInit {
         this.storageService.store('access_token', response.access_token);
         this.router.navigate(['home']);
       } else {
-        console.log('Usuario o contraseña incorrecto');
+        this.toastService.presentToast('Usuario o contraseña incorrectos!');
       }
     },
     (error: any) => {
-      console.log("Error");
+      this.toastService.presentToast(error.error.message);
     });
   }
 
