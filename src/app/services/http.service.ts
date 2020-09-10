@@ -14,6 +14,6 @@ export class HttpService {
     const options = { headers: headers, withCredentials: false };
     const url     = environment.apiUrl + uri;
 
-    return this.http.post(url, JSON.stringify(data), options);
+    return this.http.post(url, data, options);
   }
 }
