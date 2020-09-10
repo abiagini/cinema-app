@@ -13,10 +13,6 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./login.page.scss']
 })
 export class LoginPage implements OnInit {
-  public data = {
-    email: '',
-    password: ''
-  };
 
   public formGroup: FormGroup;
 
@@ -43,10 +39,11 @@ export class LoginPage implements OnInit {
   }
 
   login() {
+
     if (this.formGroup.valid) {
       this.loadingService.presentLoading('Loading');
 
-      this.authService.login(this.data).subscribe((response: any ) => {
+      this.authService.login(this.formGroup.value).subscribe((response: any ) => {
         if (response.access_token) {
           this.storageService.store('access_token', response.access_token);
           this.router.navigate(['home']);
@@ -55,7 +52,12 @@ export class LoginPage implements OnInit {
         }
       },
       (error: any) => {
-        this.toastService.presentToast("Woops, something went wrong!");
+
+        if (error.status && (error.status == 401 || error.status == 422)) {
+          return this.toastService.presentToast("Wrong email or password!");
+        }
+
+        return this.toastService.presentToast("Woops, something went wrong!");
       });
 
       return;
