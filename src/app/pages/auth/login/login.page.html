@@ -5,32 +5,44 @@
 </ion-header>
 
 <ion-content padding="true">
-  <ion-grid>
+  <form [formGroup]="formGroup" (ngSubmit)="login()">
+    <ion-grid>
 
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-input type="text" name="email" [(ngModel)]="data.email" placeholder="Email..." autocomplete="off"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" formControlName="email" placeholder="Email..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="email().invalid && (email().dirty || email().touched)">
+            <ion-text color="danger">
+              <small>Email must be a valid email</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-input type="password" name="password" [(ngModel)]="data.password" placeholder="Password..." autocomplete="off"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="password" formControlName="password" placeholder="Password..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="password().invalid && (password().dirty || password().touched)">
+            <ion-text color="danger">
+              <small>Password must have at least 6 characters</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
 
-    <ion-row>
-      <ion-col>
-          <ion-button (click)="login()">
-            Ingresar
-          </ion-button>
-      </ion-col>
-    </ion-row>
+      <ion-row>
+        <ion-col>
+            <ion-button type="submit" >
+              Login
+            </ion-button>
+        </ion-col>
+      </ion-row>
 
-  </ion-grid>
+    </ion-grid>
+  </form>
 
 </ion-content>
