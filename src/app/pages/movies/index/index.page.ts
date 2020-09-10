@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from 'src/app/services/http.service';
+import { MovieService } from 'src/app/services/movie.service';
+import { LoadingService } from 'src/app/services/loading.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-index',
@@ -6,41 +11,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.page.scss'],
 })
 export class IndexPage implements OnInit {
+  movies = [];
 
-  movies = [
-    {
-      id: 1,
-      title: 'The Avengers',
-      description: 'A description to prove if i am a good programmer or a bad shitty programmer',
-      rating: 4,
-      image_url: 'http://lorempixel.com/600/480'
-    },
-    {
-      id: 2,
-      title: 'The Avengers',
-      description: 'A description to prove if i am a good programmer or a bad shitty programmer',
-      rating: 4,
-      image_url: 'http://lorempixel.com/180/170/'
-    },
-    {
-      id: 3,
-      title: 'The Avengers',
-      description: 'A description to prove if i am a good programmer or a bad shitty programmer',
-      rating: 4,
-      image_url: 'http://lorempixel.com/180/170/'
-    },
-    {
-      id: 4,
-      title: 'The Avengers',
-      description: 'A description to prove if i am a good programmer or a bad shitty programmer',
-      rating: 4,
-      image_url: 'http://lorempixel.com/180/170/'
-    }
-  ];
+  constructor(
+    private movieService: MovieService,
+    private loadingService: LoadingService,
+    private toastService: ToastService,
+    private storageService: StorageService
 
-  constructor() { }
+  ) { }
 
   ngOnInit() {
+    this.all();
+  }
+
+  async all() {
+    this.loadingService.presentLoading('Loading');
+    const token = await this.storageService.get('access_token');
+
+    this.movieService.all(token).subscribe((response: any) => {
+      if (response) {
+        this.movies = response;
+        this.loadingService.dismiss();
+      }
+    }, (error: any) => {
+      this.toastService.presentToast("Something went wrong!");
+      this.loadingService.dismiss();
+    });
   }
 
 }

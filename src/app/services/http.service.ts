@@ -16,4 +16,12 @@ export class HttpService {
 
     return this.http.post(url, data, options);
   }
+
+  get(uri: string, data: any) {
+    const headers = new HttpHeaders();
+    const options = { headers: headers};
+    const url     = environment.apiUrl + uri;
+
+    return this.http.get(url, options);
+  }
 }
