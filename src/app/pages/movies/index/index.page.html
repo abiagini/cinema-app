@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Movies</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ng-container class="ion-margin-vertical ion-margin-horizontal ion-no-padding">
+
+    <ion-item-sliding *ngFor="let movie of movies" class="ion-margin-vertical">
+
+      <ion-item class="ion-no-padding ion-margin-horizontal">
+
+          <img [src]="movie.image_url" class="ion-no-padding" width="180" height="170">
+          <ion-text style="margin: 5px 0px 0px 10px;">
+            <h4 class="ion-no-margin">{{ movie.title }}</h4>
+            <br>
+            {{ movie.description }}
+            <br>
+            <br>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star-outline"></ion-icon>
+          </ion-text>
+
+      </ion-item>
+
+      <ion-item-options side="end"   class="ion-margin-end">
+        <ion-item-option color="success">Edit</ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+  </ng-container>
+
+</ion-content>

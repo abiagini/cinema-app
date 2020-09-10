@@ -25,6 +25,11 @@ const routes: Routes = [
     canActivate: [GuestGuard],
     loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
   },
+  {
+    path: 'movies',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/movies/index/index.module').then( m => m.IndexPageModule)
+  },
 ];
 
 @NgModule({
