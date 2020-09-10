@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [GuestGuard],
     loadChildren: () => import('./pages/auth/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'register',
+    canActivate: [GuestGuard],
+    loadChildren: () => import('./pages/auth/register/register.module').then( m => m.RegisterPageModule)
+  },
 ];
 
 @NgModule({

@@ -1,12 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Sign Up</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding="true">
-  <form [formGroup]="formGroup" (ngSubmit)="login()">
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
     <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" formControlName="name" placeholder="First name..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="name().invalid && (name().dirty || name().touched)">
+            <ion-text color="danger">
+              <small>Provide a name</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
 
       <ion-row>
         <ion-col>
@@ -37,9 +50,6 @@
       <ion-row>
         <ion-col>
             <ion-button type="submit" >
-              Login
-            </ion-button>
-            <ion-button type="button" (click)="router.navigate(['register'])">
               Sign Up
             </ion-button>
         </ion-col>

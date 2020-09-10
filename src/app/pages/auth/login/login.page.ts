@@ -1,4 +1,4 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -17,8 +17,8 @@ export class LoginPage implements OnInit {
   public formGroup: FormGroup;
 
   constructor(
+    public  router: Router,
     private formBuilder: FormBuilder,
-    private router: Router,
     private authService: AuthService,
     private storageService: StorageService,
     private toastService: ToastService,
