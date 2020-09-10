@@ -47,10 +47,14 @@ export class RegisterPage implements OnInit {
       this.authService.register(this.registerForm.value).subscribe((response: any) => {
         this.toastService.presentToast("You have registered to our awesome cinema app, you will redirected to login page!");
         setTimeout(() => {
-          this.router.navigate(['login']);
+          this.router.navigate(['login'])
+          .then(() => {
+            this.loadingService.dismiss();
+          });
         }, 3000);
       }, (error: any) => {
         if (error.status && error.status == 422) {
+          this.loadingService.dismiss();
           this.presentErrors(error);
         }
       });
