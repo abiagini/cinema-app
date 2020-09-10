@@ -6,33 +6,31 @@ import { StorageService } from '../services/storage.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class GuestGuard implements CanActivate {
 
-  constructor(
-    private storageService: StorageService,
-    private router: Router
-  ) { }
+  constructor(private storageService: StorageService, private router: Router) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     return new Promise(resolve => {
 
       this.storageService.get('access_token').then(response => {
         if (response) {
-          return resolve(true);
+          this.router.navigate(['home']);
+          return resolve(false);
         }
 
-        this.router.navigate(['login']);
-        return resolve(false);
+        return resolve(true);
       })
       .catch(error => {
-        this.router.navigate(['login']);
-        return resolve(false);
+        return resolve(true);
       });
 
     });
+
   }
 
 }
