@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
           return this.toastService.presentToast("Wrong email or password!");
         }
 
+        this.loadingService.dismiss();
         return this.toastService.presentToast("Woops, something went wrong!");
       });
 
