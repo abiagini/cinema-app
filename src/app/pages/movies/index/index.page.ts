@@ -41,4 +41,26 @@ export class IndexPage implements OnInit {
     });
   }
 
+  async rate(rate: number, movieId: string) {
+
+    this.loadingService.presentLoading('Rating');
+    const token = await this.storageService.get('access_token');
+
+    this.movieService.update(movieId, { rating: rate }, token).subscribe((response: any) => {
+      this.loadingService.dismiss();
+      this.toastService.presentToast("You have rated the movie with " + rate + "/5 stars!" );
+
+      let movie = this.movies.find(movie => movie.id == movieId);
+      movie.rating = rate;
+
+    }, (error: any) => {
+      if (error.status && error.status == 422) {
+        this.loadingService.dismiss();
+        this.toastService.presentToast("Something went wrong! " );
+      }
+    });
+
+  }
+
+
 }

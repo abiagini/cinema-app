@@ -16,14 +16,18 @@
       <ion-item class="ion-no-padding ion-margin-horizontal">
 
           <img [src]="movie.image_url" class="ion-no-padding" width="180" height="170">
-          <ion-text style="margin: 5px 0px 0px 10px;">
-            <h4 class="ion-no-margin">{{ movie.title }}</h4>
-            {{ movie.description.substring(0,40) }}
-            <br>
-            <ng-container *ngFor="let star of [].constructor(movie.rating)">
-              <ion-icon color="warning" name="star"></ion-icon>
+
+          <ion-text style="margin: 5px 0px 0px 10px; align-self:flex-start;">
+            <ng-container *ngFor="let star of [].constructor(movie.rating); let i = index">
+              <ion-icon (click)="rate(i + 1, movie.id)" style="font-size: 20px;" color="warning" name="star"></ion-icon>
             </ng-container>
+            <ng-container *ngFor="let star of [].constructor(5 - movie.rating); let i = index">
+              <ion-icon (click)="rate(movie.rating + i + 1, movie.id)" style="font-size: 20px;" color="warning" name="star-outline"></ion-icon>
+            </ng-container>
+            <h4 class="ion-no-margin">{{ movie.title }}</h4>
+            {{ movie.description.substring(0,50) }}
           </ion-text>
+
 
       </ion-item>
 
