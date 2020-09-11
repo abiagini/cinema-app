@@ -14,6 +14,7 @@
       <ion-row>
         <ion-col>
           <ion-item>
+            <ion-label position="stacked">Title</ion-label>
             <ion-input type="text" formControlName="title" placeholder="Movie title..." autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="title().invalid && (title().dirty || title().touched)">
@@ -27,7 +28,8 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="text" formControlName="description" placeholder="Description..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-textarea type="text" autogrow="true" rows="10" formControlName="description" placeholder="Description..." autocomplete="off"></ion-textarea>
           </ion-item>
           <ng-container *ngIf="description().invalid && (description().dirty || description().touched)">
             <ion-text color="danger">
@@ -40,11 +42,12 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="rating" formControlName="rating" placeholder="Rating..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Url Image</ion-label>
+            <ion-input type="text" formControlName="image_url" placeholder="Image Url..." autocomplete="off"></ion-input>
           </ion-item>
-          <ng-container *ngIf="rating().invalid && (rating().dirty || rating().touched)">
+          <ng-container *ngIf="imageUrl().invalid && (imageUrl().dirty || imageUrl().touched)">
             <ion-text color="danger">
-              <small>Supply a valid rating [0-5]</small>
+              <small>Supply a valid url image</small>
             </ion-text>
           </ng-container>
         </ion-col>

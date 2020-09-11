@@ -37,11 +37,6 @@ export class EditPage implements OnInit {
         description: new FormControl('', [
           Validators.required
         ]),
-        rating: new FormControl('', [
-          Validators.required,
-          Validators.min(0),
-          Validators.max(5)
-        ]),
         image_url: new FormControl('', [
           Validators.required,
         ])
@@ -73,7 +68,6 @@ export class EditPage implements OnInit {
         this.movie = response;
         this.title().setValue(this.movie.title);
         this.description().setValue(this.movie.description);
-        this.rating().setValue(this.movie.rating);
         this.imageUrl().setValue(this.movie.image_url);
         this.loadingService.dismiss();
       }
