@@ -29,4 +29,25 @@ export class MovieService {
     return this.http.get(environment.apiUrl + '/movies', options);
   }
 
+  show(id: string, token: string): Observable<any> {
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    const options = { headers: headers };
+
+    return this.http.get(environment.apiUrl + '/movies/' + id, options);
+  }
+
+  update(id: string, data: any, token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + token
+    });
+    const options = { headers: headers };
+
+    return this.http.put(environment.apiUrl + '/movies/' + id, data, options);
+  }
+
 }

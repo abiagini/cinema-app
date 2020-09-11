@@ -30,11 +30,21 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./pages/movies/index/index.module').then( m => m.IndexPageModule)
   },
+  {
+    path: 'movies/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/movies/show/show.module').then( m => m.ShowPageModule)
+  },
+  {
+    path: 'movies/edit/:id',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./pages/movies/edit/edit.module').then( m => m.EditPageModule)
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, onSameUrlNavigation: 'reload' })
   ],
   exports: [RouterModule]
 })

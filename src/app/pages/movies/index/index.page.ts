@@ -4,6 +4,7 @@ import { MovieService } from 'src/app/services/movie.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -17,8 +18,8 @@ export class IndexPage implements OnInit {
     private movieService: MovieService,
     private loadingService: LoadingService,
     private toastService: ToastService,
-    private storageService: StorageService
-
+    private storageService: StorageService,
+    public router: Router
   ) { }
 
   ngOnInit() {

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sign Up</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button autoHide="false"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding="true">
+  <form [formGroup]="movieForm" (ngSubmit)="update()">
+    <ion-grid>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" formControlName="title" placeholder="Movie title..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="title().invalid && (title().dirty || title().touched)">
+            <ion-text color="danger">
+              <small>Provide a movie title</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="text" formControlName="description" placeholder="Description..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="description().invalid && (description().dirty || description().touched)">
+            <ion-text color="danger">
+              <small>Supply a description</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-input type="rating" formControlName="rating" placeholder="Rating..." autocomplete="off"></ion-input>
+          </ion-item>
+          <ng-container *ngIf="rating().invalid && (rating().dirty || rating().touched)">
+            <ion-text color="danger">
+              <small>Supply a valid rating [0-5]</small>
+            </ion-text>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+            <ion-button type="submit" >
+              Save
+            </ion-button>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+  </form>
+
+</ion-content>

@@ -21,14 +21,14 @@
             {{ movie.description.substring(0,40) }}
             <br>
             <ng-container *ngFor="let star of [].constructor(movie.rating)">
-              <ion-icon name="star"></ion-icon>
+              <ion-icon color="warning" name="star"></ion-icon>
             </ng-container>
           </ion-text>
 
       </ion-item>
 
       <ion-item-options side="end" class="ion-margin-end">
-        <ion-item-option color="success" (click)="all()">Edit</ion-item-option>
+        <ion-item-option color="success" (click)="router.navigate(['movies', movie.id])">Edit</ion-item-option>
       </ion-item-options>
 
     </ion-item-sliding>
