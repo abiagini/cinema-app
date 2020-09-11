@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: '',
     canActivate: [AuthGuard],
-    redirectTo: 'home',
+    redirectTo: 'movies',
     pathMatch: 'full'
   },
   {
