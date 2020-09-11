@@ -5,6 +5,7 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class LoginPage implements OnInit {
 
   public formGroup: FormGroup;
+  public avatarImage: string;
 
   constructor(
     public  router: Router,
@@ -36,6 +38,7 @@ export class LoginPage implements OnInit {
         Validators.minLength(6)
       ]),
     });
+    this.avatarImage = environment.avatarImage;
   }
 
   login() {

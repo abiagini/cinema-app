@@ -4,14 +4,22 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding="true">
+<ion-content padding="true" style="display: flex; align-content: center;">
   <form [formGroup]="formGroup" (ngSubmit)="login()">
     <ion-grid>
+      <ion-row class="ion-margin">
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-avatar>
+            <img [src]="avatarImage">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
 
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="text" formControlName="email" placeholder="Email..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="text" formControlName="email" autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="email().invalid && (email().dirty || email().touched)">
             <ion-text color="danger">
@@ -24,7 +32,8 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="password" formControlName="password" placeholder="Password..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password"  autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="password().invalid && (password().dirty || password().touched)">
             <ion-text color="danger">
@@ -35,7 +44,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col style="display: flex; justify-content: center;">
             <ion-button type="submit" >
               Login
             </ion-button>
