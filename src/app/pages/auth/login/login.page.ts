@@ -49,7 +49,7 @@ export class LoginPage implements OnInit {
       this.authService.login(this.formGroup.value).subscribe((response: any ) => {
         if (response.access_token) {
           this.storageService.store('access_token', response.access_token);
-          this.router.navigate(['home']).then(() => this.loadingService.dismiss());
+          this.router.navigate(['movies']).then(() => this.loadingService.dismiss());
         } else {
           this.toastService.presentToast("Wrong email or password!");
         }
