@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>Sign Up</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,10 +11,20 @@
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <ion-grid>
 
+
+      <ion-row class="ion-margin">
+        <ion-col style="display: flex; justify-content: center;">
+          <ion-avatar>
+            <img [src]="avatarImage">
+          </ion-avatar>
+        </ion-col>
+      </ion-row>
+
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="text" formControlName="name" placeholder="First name..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">First name</ion-label>
+            <ion-input type="text" formControlName="name" autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="name().invalid && (name().dirty || name().touched)">
             <ion-text color="danger">
@@ -24,7 +37,8 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="text" formControlName="email" placeholder="Email..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="text" formControlName="email" autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="email().invalid && (email().dirty || email().touched)">
             <ion-text color="danger">
@@ -37,7 +51,8 @@
       <ion-row>
         <ion-col>
           <ion-item>
-            <ion-input type="password" formControlName="password" placeholder="Password..." autocomplete="off"></ion-input>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" formControlName="password" autocomplete="off"></ion-input>
           </ion-item>
           <ng-container *ngIf="password().invalid && (password().dirty || password().touched)">
             <ion-text color="danger">
@@ -48,7 +63,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-col>
+        <ion-col style="display: flex; justify-content: center;">
             <ion-button type="submit" >
               Sign Up
             </ion-button>

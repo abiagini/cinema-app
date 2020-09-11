@@ -4,6 +4,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class RegisterPage implements OnInit {
 
   public registerForm: FormGroup;
+  public avatarImage: string;
 
   constructor(
     public  router: Router,
@@ -23,6 +25,8 @@ export class RegisterPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.avatarImage = environment.avatarImage;
+
     this.registerForm = this.formBuilder.group({
       name: new FormControl('', [
         Validators.required,
